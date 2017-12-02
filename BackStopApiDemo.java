@@ -13,9 +13,9 @@ import java.util.Map;
  *** Created by william on 12/1/17.
  ***********************************************/
 public class BackStopApiDemo {
-    private static final String HOST_NAME = "192.168.10.235:8080"; //{HOST_NAME} // 192.168.10.235:8080
-    private static final String USER_NAME = "bsg4"; //{USER_NAME}                // bsg4
-    private static final String PASSWORD = "rup3rt";   //{PASSWORD}              // rup3rt
+    private static final String HOST_NAME = "{HOST_NAME}"; //{HOST_NAME} // 192.168.10.235:8080
+    private static final String USER_NAME = "{USER_NAME}"; //{USER_NAME} // bsg4
+    private static final String PASSWORD = "{PASSWORD}";   //{PASSWORD}  // rup3rt
     private static final String SERVICE_URL = "http://" + HOST_NAME;
     private static final String LOGIN_PATH = "/backstop/api/login";
     private static final String API_PATH_PEOPLE = "/backstop/api/people";

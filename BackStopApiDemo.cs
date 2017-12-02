@@ -23,10 +23,10 @@ namespace BackStopApiDemo
         //private static string _UserName = "shiny.liu";
         //private static string _Password = "b@ckst0p";
 
-        private static string _AuthUrl = "http://192.168.10.235:8080/backstop/api/login";
-                private static string _BaseUrl = "http://192.168.10.235:8080/backstop/api";
-        private static string _UserName = "bsg4";
-        private static string _Password = "rup3rt";
+        private static string _AuthUrl = "http://{HOST_NAME}/backstop/api/login"; // INPUT HOSTNAME
+        private static string _BaseUrl = "http://{HOST_NAME}/backstop/api";       // INPUT HOSTNAME
+        private static string _UserName = "{USER_NAME}";                          // INPUT USERNAME
+        private static string _Password = "{PASS_WORD}";                          // INPUT PASSWORD
 
         private static string _ContentTypeHeader = "application/vnd.api+json";
         private static string _AcceptHeader = "application/vnd.api+json";
