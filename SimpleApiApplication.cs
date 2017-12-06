@@ -16,14 +16,14 @@ using System.Text;
  */
 class SimpleApiApplication
 {
-    private static string HOST_NAME = "192.168.10.235:8080"; //
-    private static string USER_NAME = "{USER_NAME}"; //
+    private static string HOST_NAME = "{HOST_NAME}";
+    private static string USER_NAME = "{USER_NAME}";
     private static string PASS_WORD = "{PASS_WORD}";
     private static string SERVICE_URL = "http://" + HOST_NAME;
     private static string LOGIN_URL = "/backstop/api/login";
     private static string API_PATH_PEOPLE = "/backstop/api/people";
     private static string API_PATH_HEDGE_FUNDS = "/backstop/api/hedge-funds";
-    private static String ORGANIZATION_ID = "781301"; //807065 //{ORGANIZATION_ID}
+    private static String ORGANIZATION_ID = "{ORGANIZATION_ID}";
     private static String API_POST_HEDGE_FUND_BODY = "{\n"
             + "  \"data\": {\n"
             + "    \"type\":\"hedge-funds\",\n"
@@ -50,11 +50,11 @@ class SimpleApiApplication
     {
         SimpleApiApplication apiExample = new SimpleApiApplication();
         var response = apiExample.login();
-        //Console.Write(response);
-        //response = apiExample.sendApiRequest(API_PATH_PEOPLE, HTTP_METHOD_GET, null);
-        //Console.Write(response);
-        response = apiExample.sendApiRequest(API_PATH_HEDGE_FUNDS, HTTP_METHOD_POST, API_POST_HEDGE_FUND_BODY);
         Console.Write(response);
+        response = apiExample.sendApiRequest(API_PATH_PEOPLE, HTTP_METHOD_GET, null);
+        Console.Write(response);
+        //response = apiExample.sendApiRequest(API_PATH_HEDGE_FUNDS, HTTP_METHOD_POST, API_POST_HEDGE_FUND_BODY);
+        //Console.Write(response);
         Console.Read();
     }
     /**
