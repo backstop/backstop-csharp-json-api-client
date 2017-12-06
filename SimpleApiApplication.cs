@@ -3,7 +3,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 /**
- * This is a simpler example focusing on concepts demostration and give you a quick start.
+ * This is a simple example focusing on concepts and gives you a quick start.
  *
  * To get it work, please make sure
  * 1. You have contacted Backstop support team and properly set up API access
