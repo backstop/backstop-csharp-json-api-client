@@ -22,11 +22,10 @@ using System.Net.Mime;
  * 3.2 Download the uploaded document to a file in the same directory of the file to be uploaded
  *
  */
-class DocumentApiApplication
-{
-    private static string HOST_NAME = "{HOST_NAME}";// e.g. demo01.backstopsolutions.com
-    private static String USER_NAME = "{USER_NAME}";// The user name with API access
-    private static String PASSWORD = "{PASSWORD}";// The backstop ID of the person you want to upload a document
+class DocumentApiApplication {
+    private static string HOST_NAME = "{HOST_NAME}"; // e.g. demo01.backstopsolutions.com
+    private static String USER_NAME = "{USER_NAME}"; // The user name with API access
+    private static String PASSWORD = "{PASSWORD}"; // The backstop ID of the person you want to upload a document
     private static String PERSON_ID = "{PERSON_ID}";
     private static String UPLOAD_DOCUMENT_NAME = "{UPLOAD_DOCUMENT_NAME}"; // e.g "product.doc";
     private static String UPLOAD_DOCUMENT_PATH = "{UPLOAD_DOCUMENT_PATH}"; // e.g "C:\product.doc";
@@ -66,8 +65,7 @@ class DocumentApiApplication
     private static string authorizationToken = null;
     private static HttpClient httpClient = new HttpClient();
 
-    public static void Main(string[] args)
-    {
+    public static void Main(string[] args) {
         DocumentApiApplication apiExample = new DocumentApiApplication();
 
         // Login
@@ -86,42 +84,37 @@ class DocumentApiApplication
     /**
      * Login with basic authentication and obtain/keep the authentication token for future communication
      */
-    public void login()
-    {
+    public void login() {
         authorizationToken = sendHttpRequest(LOGIN_PATH, HTTP_METHOD_POST, "", false);
     }
-    private string sendApiRequest(string apiPath, string httpMethod, string requestBody)
-    {
+
+    private string sendApiRequest(string apiPath, string httpMethod, string requestBody) {
         return sendHttpRequest(apiPath, httpMethod, requestBody, true);
     }
-    private string zipAndEncode(byte[] bytes)
-    {
+
+    private string zipAndEncode(byte[] bytes) {
         using (var ms = new MemoryStream())
-        using (var gzip = new GZipStream(ms, CompressionMode.Compress))
-        {
+        using (var gzip = new GZipStream(ms, CompressionMode.Compress)) {
             gzip.Write(bytes, 0, bytes.Length);
             gzip.Close();
             return Convert.ToBase64String(ms.ToArray());
         }
     }
 
-
     /**
      * Upload document to designated person
      */
-    public string uploadDocument()
-    {
+    public string uploadDocument() {
         var fileBytes = File.ReadAllBytes(UPLOAD_DOCUMENT_PATH);
         var requestBody = API_POST_DOCUMENT_BODY.Replace("{DOCUMENT_NAME}", UPLOAD_DOCUMENT_NAME).Replace("{DATA}", zipAndEncode(fileBytes));
         return sendApiRequest(API_PATH_DOCUMENTS, METHOD_POST, requestBody);
     }
+
     /**
      * Download document and save to the same directory as that for upload
      */
-    private void downloadDocument()
-    {
-        var request = new HttpRequestMessage
-        {
+    private void downloadDocument() {
+        var request = new HttpRequestMessage {
             Method = HttpMethod.Get,
             RequestUri = new Uri(@SERVICE_URL + DOWNLOAD_DOCUMENT_PATH)
         };
@@ -134,29 +127,25 @@ class DocumentApiApplication
         File.WriteAllBytes(fileName, response.Content.ReadAsByteArrayAsync().Result);
     }
 
-    private string sendHttpRequest(string requestUrl, string httpMethod, string requestBody, bool useToken)
-    {
-        var request = new HttpRequestMessage
-        {
+    private string sendHttpRequest(string requestUrl, string httpMethod, string requestBody, bool useToken) {
+        var request = new HttpRequestMessage {
             Content = new StringContent(requestBody, Encoding.UTF8, CONTENT_TYPE_HEADER),
             Method = new HttpMethod(httpMethod),
             RequestUri = new Uri(SERVICE_URL + requestUrl)
         };
+
         string token;
-        if (useToken)
-        {
+        if (useToken) {
             token = authorizationToken;
             request.Headers.TryAddWithoutValidation("token", "true");
-        }
-        else
-        {
+        } else {
             token = PASS_WORD;
         }
+
         request.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes(USER_NAME + ":" + token)));
         request.Headers.TryAddWithoutValidation("Accept", CONTENT_TYPE_HEADER);
         var response = httpClient.SendAsync(request).Result;
         response.EnsureSuccessStatusCode();
         return response.Content.ReadAsStringAsync().Result;
     }
-
 }
