@@ -16,7 +16,7 @@ using System.Net.Mime;
  *
  * To get it work, please make sure
  * 1. You have contacted Backstop support team and properly set up API access
- * 2. Replace all parameters in angle brackets, e.g. {HOST_NAME}
+ * 2. Replace all parameters in angle brackets, e.g. {HOST_NAME}, {PERSON_ID}, etc.
  * 3. Runing this application will do the following
  * 3.1 Upload (POST) a document to the person designated by {PERSON_ID}
  * 3.2 Download the uploaded document to a file in the same directory of the file to be uploaded
@@ -25,10 +25,10 @@ using System.Net.Mime;
 class DocumentApiApplication {
     private static string HOST_NAME = "{HOST_NAME}"; // e.g. demo01.backstopsolutions.com
     private static String USER_NAME = "{USER_NAME}"; // The user name with API access
-    private static String PASSWORD = "{PASSWORD}"; // The backstop ID of the person you want to upload a document
-    private static String PERSON_ID = "{PERSON_ID}";
-    private static String UPLOAD_DOCUMENT_NAME = "{UPLOAD_DOCUMENT_NAME}"; // e.g "product.doc";
-    private static String UPLOAD_DOCUMENT_PATH = "{UPLOAD_DOCUMENT_PATH}"; // e.g "C:\product.doc";
+    private static String PASSWORD = "{PASSWORD}"; 
+    private static String PERSON_ID = "{PERSON_ID}"; // The backstop ID of the person you want to upload a document
+    private static String UPLOAD_DOCUMENT_NAME = "{UPLOAD_DOCUMENT_NAME}"; // e.g. "product.doc";
+    private static String UPLOAD_DOCUMENT_PATH = "{UPLOAD_DOCUMENT_PATH}"; // e.g. "C:\product.doc";
     private static String SERVICE_URL = "http://" + HOST_NAME;
     /**
      * The backstop ID of the document to be downloaded. Note the URL to
