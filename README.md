@@ -5,5 +5,5 @@ Sample C# application for JSON API users.
 
 **SimpleApiApplication** is for first time user to get a quick start. After specifying a few simple parameters like HOST_NAME, USER_NAME and PASSWORD you will have your first API application running with basic authentication.
 
-**DocumentApiApplication**, which demonstrates how to upload and download documents.
+**DocumentApiApplication** demonstrates how to upload and download documents.
 
