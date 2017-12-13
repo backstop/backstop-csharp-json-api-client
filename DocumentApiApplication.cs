@@ -150,7 +150,7 @@ class DocumentApiApplication
         }
         else
         {
-            token = PASS_WORD;
+            token = PASSWORD;
         }
         request.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes(USER_NAME + ":" + token)));
         request.Headers.TryAddWithoutValidation("Accept", CONTENT_TYPE_HEADER);
