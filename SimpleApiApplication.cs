@@ -1,7 +1,15 @@
 using System;
 using System.IO;
 using System.Net;
+using System.ServiceModel;
 using System.Text;
+using System.Collections.Generic;
+using BackStopApiDemo;
+using BackStopApiDemo.Extensions;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Net.Http.Headers;
+using System.Net.Mime;
 /**
  * This is a simple example focusing on concepts and gives you a quick start.
  *
@@ -47,6 +55,7 @@ class SimpleApiApplication {
     private static string CONTENT_TYPE_HEADER = "application/vnd.api+json";
     private static string HTTP_METHOD_GET = "GET";
     private static string HTTP_METHOD_POST = "POST";
+    private static HttpClient httpClient = new HttpClient();
     private static string authorizationToken = null;
     public static void Main(string[] args) {
         SimpleApiApplication apiExample = new SimpleApiApplication();
@@ -81,32 +90,28 @@ class SimpleApiApplication {
      * Main method for any Http request
      */
     private static string sendHttpRequest(string requestUrl, string httpMethod, string requestBody, Boolean useToken) {
-        ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
-        HttpWebRequest request = HttpWebRequest.Create(SERVICE_URL + requestUrl) as HttpWebRequest;
-        request.Accept = CONTENT_TYPE_HEADER;
-        request.ContentType = CONTENT_TYPE_HEADER;
-        string token = "";
-        if (useToken) {
+        var request = new HttpRequestMessage
+        {
+            Content = new StringContent(requestBody, Encoding.UTF8, CONTENT_TYPE_HEADER),
+            Method = new HttpMethod(httpMethod),
+            RequestUri = new Uri(SERVICE_URL + requestUrl)
+        };
+        string token;
+        if (useToken)
+        {
             token = authorizationToken;
-            request.Headers.Add("token:true");
-        } else {
+            request.Headers.TryAddWithoutValidation("token", "true");
+        }
+        else
+        {
             token = PASS_WORD;
         }
+        request.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes(USER_NAME + ":" + token)));
+        request.Headers.TryAddWithoutValidation("Accept", CONTENT_TYPE_HEADER);
+        request.Headers.Add("User-Agent", "BackstopAPIClient");
 
-        request.Headers.Add("Authorization: " + "Basic " + Convert.ToBase64String(Encoding.ASCII.GetBytes(USER_NAME + ":" + token)));
-        request.Method = httpMethod;
-        if (!HTTP_METHOD_GET.Equals(httpMethod)) {
-            request.ContentLength = requestBody.Length;
-            StreamWriter writer = new StreamWriter(request.GetRequestStream(), Encoding.ASCII);
-            writer.Write(requestBody);
-            writer.Flush();
-        }
-
-        WebResponse response = request.GetResponse();
-        if (response != null) {
-            return new StreamReader(response.GetResponseStream()).ReadToEnd();
-        } else {
-            return "Failed: request response is null.";
-        }
+        var response = httpClient.SendAsync(request).Result;
+        response.EnsureSuccessStatusCode();
+        return response.Content.ReadAsStringAsync().Result;
     }
 }
