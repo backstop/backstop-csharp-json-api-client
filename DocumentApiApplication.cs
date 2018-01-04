@@ -128,7 +128,8 @@ class DocumentApiApplication
 
         request.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes(USER_NAME + ":" + authorizationToken)));
         request.Headers.TryAddWithoutValidation("token", "true");
-        request.Headers.Add("User-Agent", "BackstopAPIClient"); // Add backstop user-agent request header
+        request.Headers.Add("User-Agent", "BackstopAPIClient"); 
+        
         var response = httpClient.SendAsync(request).Result;
         response.EnsureSuccessStatusCode();
         var fileName = response.Content.Headers.ContentDisposition.FileName.Replace("\"", "");
