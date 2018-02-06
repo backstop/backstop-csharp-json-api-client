@@ -27,7 +27,7 @@ class SimpleApiApplication {
     private static string USER_NAME = "{USER_NAME}";
     private static string PASS_WORD = "{PASS_WORD}";
     
-    private static string SERVICE_URL = "http://" + HOST_NAME;
+    private static string SERVICE_URL = "https://" + HOST_NAME;
     private static string LOGIN_URL = "/backstop/api/login";
     
     private static string API_PATH_PEOPLE = "/backstop/api/people";

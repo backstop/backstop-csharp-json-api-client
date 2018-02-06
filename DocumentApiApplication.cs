@@ -30,7 +30,7 @@ class DocumentApiApplication
     private static String PERSON_ID = "{PERSON_ID}";
     private static String UPLOAD_DOCUMENT_NAME = "{UPLOAD_DOCUMENT_NAME}"; // e.g "product.doc";
     private static String UPLOAD_DOCUMENT_PATH = "{UPLOAD_DOCUMENT_PATH}"; // e.g "C:\product.doc";
-    private static String SERVICE_URL = "http://" + HOST_NAME;
+    private static String SERVICE_URL = "https://" + HOST_NAME;
     /**
      * The backstop ID of the document to be downloaded. Note the URL to
      */
