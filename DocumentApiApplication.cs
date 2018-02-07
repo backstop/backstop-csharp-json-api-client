@@ -140,7 +140,7 @@ class DocumentApiApplication
     {
         var request = new HttpRequestMessage
         {
-            Content = new StringContent(requestBody, Encoding.UTF8, CONTENT_TYPE_HEADER),
+            Content = string.IsNullOrWhiteSpace(requestBody) ? null : new StringContent(requestBody, Encoding.UTF8, CONTENT_TYPE_HEADER),
             Method = new HttpMethod(httpMethod),
             RequestUri = new Uri(SERVICE_URL + requestUrl)
         };
