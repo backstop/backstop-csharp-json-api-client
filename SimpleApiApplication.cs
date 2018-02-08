@@ -114,4 +114,5 @@ class SimpleApiApplication {
         response.EnsureSuccessStatusCode();
         return response.Content.ReadAsStringAsync().Result;
     }
+
 }

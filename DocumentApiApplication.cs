@@ -26,7 +26,7 @@ class DocumentApiApplication
 {
     private static string HOST_NAME = "{HOST_NAME}";// e.g. demo01.backstopsolutions.com
     private static String USER_NAME = "{USER_NAME}";// The user name with API access
-    private static String PASSWORD = "{PASSWORD}";// The backstop ID of the person you want to upload a document
+    private static String PASSWORD = "{PASSWORD}";  // The backstop ID of the person you want to upload a document
     private static String PERSON_ID = "{PERSON_ID}";
     private static String UPLOAD_DOCUMENT_NAME = "{UPLOAD_DOCUMENT_NAME}"; // e.g "product.doc";
     private static String UPLOAD_DOCUMENT_PATH = "{UPLOAD_DOCUMENT_PATH}"; // e.g "C:\product.doc";
@@ -104,7 +104,6 @@ class DocumentApiApplication
             return Convert.ToBase64String(ms.ToArray());
         }
     }
-
 
     /**
      * Upload document to designated person
