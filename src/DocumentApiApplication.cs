@@ -1,15 +1,9 @@
 using System;
 using System.IO;
-using System.Net;
-using System.ServiceModel;
 using System.Text;
-using System.Collections.Generic;
 using System.IO.Compression;
-using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 using System.Net.Http.Headers;
-using System.Net.Mime;
 
 /**
  * Demonstrate how to upload and download document

@@ -1,15 +1,7 @@
 using System;
-using System.IO;
-using System.Net;
-using System.ServiceModel;
 using System.Text;
-using System.Collections.Generic;
-using BackStopApiDemo;
-using BackStopApiDemo.Extensions;
 using System.Net.Http;
-using System.Threading.Tasks;
 using System.Net.Http.Headers;
-using System.Net.Mime;
 /**
  * This is a simple example focusing on concepts and gives you a quick start.
  *
