@@ -22,17 +22,18 @@ using System.Net.Mime;
  *
  * Refer to ApiApplication for framework example of full implementation
  */
-class SimpleApiApplication {
+class SimpleApiApplication
+{
     private static string HOST_NAME = "{HOST_NAME}";
     private static string USER_NAME = "{USER_NAME}";
     private static string PASS_WORD = "{PASS_WORD}";
-    
+
     private static string SERVICE_URL = "https://" + HOST_NAME;
     private static string LOGIN_URL = "/backstop/api/login";
-    
+
     private static string API_PATH_PEOPLE = "/backstop/api/people";
     private static string API_PATH_HEDGE_FUNDS = "/backstop/api/hedge-funds";
-    
+
     private static String ORGANIZATION_ID = "{ORGANIZATION_ID}";
     private static String API_POST_HEDGE_FUND_BODY = "{\n"
             + "  \"data\": {\n"
@@ -57,24 +58,26 @@ class SimpleApiApplication {
     private static string HTTP_METHOD_POST = "POST";
     private static HttpClient httpClient = new HttpClient();
     private static string authorizationToken = null;
-    public static void Main(string[] args) {
+    public static void Main(string[] args)
+    {
         SimpleApiApplication apiExample = new SimpleApiApplication();
         var response = apiExample.login();
         Console.Write(response);
-        
+
         response = apiExample.sendApiRequest(API_PATH_PEOPLE, HTTP_METHOD_GET, null);
         Console.Write(response);
-        
+
         //response = apiExample.sendApiRequest(API_PATH_HEDGE_FUNDS, HTTP_METHOD_POST, API_POST_HEDGE_FUND_BODY);
         //Console.Write(response);
-        
+
         Console.Read();
     }
 
     /**
      * Login with basic authentication and obtain/keep the authentication token for future communication
      */
-    public string login() {
+    public string login()
+    {
         authorizationToken = sendHttpRequest(LOGIN_URL, HTTP_METHOD_POST, "", false);
         return authorizationToken;
     }
@@ -82,14 +85,16 @@ class SimpleApiApplication {
     /**
      * Main method for any JSON API request
      */
-    private string sendApiRequest(string apiPath, string httpMethod, string requestBody) {
+    private string sendApiRequest(string apiPath, string httpMethod, string requestBody)
+    {
         return sendHttpRequest(apiPath, httpMethod, requestBody, true);
     }
 
     /**
      * Main method for any Http request
      */
-    private static string sendHttpRequest(string requestUrl, string httpMethod, string requestBody, Boolean useToken) {
+    private static string sendHttpRequest(string requestUrl, string httpMethod, string requestBody, Boolean useToken)
+    {
         var request = new HttpRequestMessage
         {
             Content = string.IsNullOrWhiteSpace(requestBody) ? null : new StringContent(requestBody, Encoding.UTF8, CONTENT_TYPE_HEADER),
