@@ -1,15 +1,10 @@
 using System;
 using System.IO;
-using System.Net;
-using System.ServiceModel;
 using System.Text;
-using System.Collections.Generic;
 using System.IO.Compression;
-using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 using System.Net.Http.Headers;
-using System.Net.Mime;
+using System.Net;
 
 /**
  * Demonstrate how to upload and download document
@@ -70,6 +65,9 @@ class DocumentApiApplication
     {
         DocumentApiApplication apiExample = new DocumentApiApplication();
 
+        // Forces the use of TLS 1.2
+        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
         // Login
         apiExample.login();
 
@@ -127,8 +125,8 @@ class DocumentApiApplication
 
         request.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes(USER_NAME + ":" + authorizationToken)));
         request.Headers.TryAddWithoutValidation("token", "true");
-        request.Headers.Add("User-Agent", "BackstopAPIClient"); 
-        
+        request.Headers.Add("User-Agent", "BackstopAPIClient");
+
         var response = httpClient.SendAsync(request).Result;
         response.EnsureSuccessStatusCode();
         var fileName = response.Content.Headers.ContentDisposition.FileName.Replace("\"", "");
