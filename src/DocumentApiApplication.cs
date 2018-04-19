@@ -4,6 +4,7 @@ using System.Text;
 using System.IO.Compression;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net;
 
 /**
  * Demonstrate how to upload and download document
@@ -63,6 +64,9 @@ class DocumentApiApplication
     public static void Main(string[] args)
     {
         DocumentApiApplication apiExample = new DocumentApiApplication();
+
+        // Forces the use of TLS 1.2
+        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
         // Login
         apiExample.login();

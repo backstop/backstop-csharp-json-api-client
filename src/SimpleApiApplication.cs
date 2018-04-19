@@ -2,6 +2,7 @@ using System;
 using System.Text;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net;
 /**
  * This is a simple example focusing on concepts and gives you a quick start.
  *
@@ -53,6 +54,10 @@ class SimpleApiApplication
     public static void Main(string[] args)
     {
         SimpleApiApplication apiExample = new SimpleApiApplication();
+
+        // Forces the use of TLS 1.2
+        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
         var response = apiExample.login();
         Console.Write(response);
 
