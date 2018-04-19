@@ -4,17 +4,17 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net;
 /**
- * This is a simple example focusing on concepts and gives you a quick start.
- *
- * Here are the steps to use this example
- * 1. Contact Backstop support team and properly set up user for API access
- * 2. Replace all parameters in angle brackets, e.g. {HOST_NAME}
- * 3. After the above steps you should be able to run a simple GET example
- * 4. Currently the example for POST hedge-funds is commented out. To try it out, please update the corresponding parameters
- *    and uncomment the apiExample.sendApiRequest(API_PATH_HEDGE_FUNDS, METHOD_POST, API_POST_HEDGE_FUND_BODY)
- *
- * Refer to ApiApplication for framework example of full implementation
- */
+* This is a simple example focusing on concepts and gives you a quick start.
+*
+* Here are the steps to use this example
+* 1. Contact Backstop support team and properly set up user for API access
+* 2. Replace all parameters in angle brackets, e.g. {HOST_NAME}
+* 3. After the above steps you should be able to run a simple GET example
+* 4. Currently the example for POST hedge-funds is commented out. To try it out, please update the corresponding parameters
+*    and uncomment the apiExample.sendApiRequest(API_PATH_HEDGE_FUNDS, METHOD_POST, API_POST_HEDGE_FUND_BODY)
+*
+* Refer to the Java ApiApplication for a framework example of the full implementation
+*/
 class SimpleApiApplication
 {
     private static string HOST_NAME = "{HOST_NAME}";
